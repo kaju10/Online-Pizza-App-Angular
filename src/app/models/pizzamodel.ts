@@ -18,4 +18,6 @@ export class Pizzamodel {
         this.pizzaCost= pizzaCost;
         this.pizzaImageUrl=pizzaImageUrl;
     }
+
+    
 }

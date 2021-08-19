@@ -96,7 +96,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              
+            ]
           }
         }
       }
@@ -104,3 +106,5 @@
   },
   "defaultProject": "online-pizza-app"
 }
+
+

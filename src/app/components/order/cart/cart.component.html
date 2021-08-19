@@ -1,9 +1,22 @@
-<ul class="list-group-item">
-    <li class="list-group-item" *ngFor="let i of [1,2,3,4,5]">
-        <app-cartitems></app-cartitems>
-    </li>
+<div  *ngIf="cartItems.length===0">
+    <div class="alert alert-dark">
+        <h6>Its Lonely in Here</h6>
+    </div>
+    <div class="list-group-item list-group-item-info ">
+        Total: <strong>{{0 | currency:'INR'}}</strong>
+    </div>
+</div>
 
-    <li class="list-group-item list-group-item-info ">
-        Total: <strong>{{2000 | currency:'INR'}}</strong>
-    </li>
-</ul>
+<div *ngIf="cartItems.length">
+    <ul class="list-group-item">
+        <li class="list-group-item" *ngFor="let pizza of cartItems">
+            <app-cartitems [cartPizza]="pizza"></app-cartitems>
+        </li>
+    
+        <li class="list-group-item list-group-item-info ">
+            Total: <strong>{{cartTotal | currency:'INR'}}</strong>
+        </li>
+    </ul>
+</div>
+
+
