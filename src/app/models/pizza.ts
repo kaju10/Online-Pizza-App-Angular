@@ -1,4 +1,4 @@
-export class Pizzamodel {
+export class Pizza {
 
     pizzaId: number=0;
     pizzaType: string="";

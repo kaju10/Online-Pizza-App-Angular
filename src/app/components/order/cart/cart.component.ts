@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pizzamodel } from 'src/app/models/pizzamodel';
+import { Pizza } from 'src/app/models/pizza';
 import { MessengerService } from 'src/app/services/messenger.service';
 
 @Component({
@@ -22,9 +22,10 @@ export class CartComponent implements OnInit {
     }) ;
   }
   
-  AddPizzasToCart(pizza: Pizzamodel){
+  AddPizzasToCart(pizza: Pizza){
 
     let pizzaExists= false;
+    
 
     for(let i in this.cartItems){
         if(this.cartItems[i].pizzaId==pizza.pizzaId){
@@ -47,12 +48,13 @@ export class CartComponent implements OnInit {
 
     this.cartTotal=0;
     this.cartItems.forEach(i=> {this.cartTotal+= (i.pizzaCost*i.quantity)});
-
+    
   }
 
-  
+ 
 
 }
+
 
 // AddPizzasToCart(pizza: Pizzamodel){
   //   if(this.cartItems.length===0){

@@ -7,8 +7,13 @@
       <p class="card-text">{{pizza.pizzaName}}.</p>
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary" data-container="body" data-toggle="popover" data-placement="top" data-trigger="focus" data-content=popOver()>View Details</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target=#pizza.id aria-expanded="false" aria-controls="collapseExample">View Details</button>
           <button type="button" class="btn btn-sm btn-outline-primary" (click)="onClickAddToCart()">Add to Cart</button>
+        </div>
+      </div>
+      <div class="collapse" id=pizza.id>
+        <div class="card card-body">
+          {{pizza.pizzaDescription}}
         </div>
       </div>
     </div>

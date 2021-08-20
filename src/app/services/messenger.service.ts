@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Pizzamodel} from '../models/pizzamodel';
+import { Pizza} from '../models/pizza';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class MessengerService {
   subject = new Subject();
   constructor() { }
 
-  sendMsg(pizza: Pizzamodel){
+  sendMsg(pizza: Pizza){
       this.subject.next(pizza);
   }
 

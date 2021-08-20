@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Pizzamodel } from 'src/app/models/pizzamodel';
+import { Pizza } from 'src/app/models/pizza';
 import { MessengerService } from 'src/app/services/messenger.service';
 
 
@@ -11,11 +11,9 @@ import { MessengerService } from 'src/app/services/messenger.service';
 export class PizzasComponent implements OnInit {
 
   
-  @Input() pizza: Pizzamodel;
+  @Input() pizza: Pizza;
 
-  popOver(): String{
-    return this.pizza.pizzaDescription;
-  }
+  
   constructor(private msg: MessengerService) { }
 
   ngOnInit(): void {

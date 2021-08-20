@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Pizzamodel } from 'src/app/models/pizzamodel';
 
 @Component({
   selector: 'app-cartitems',

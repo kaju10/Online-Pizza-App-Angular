@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Pizzamodel } from '../models/pizzamodel';
+import { Pizza} from '../models/pizza';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+import { viewPizzaUrl } from '../config';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,8 @@ export class PizzasService {
 
 
 
-  public getPizzas(): Observable<Pizzamodel[]>{
-    return this.httpRequests.get<Pizzamodel[]>("http://localhost:9090/viewPizza");
+  public getPizzas(): Observable<Pizza[]>{
+    return this.httpRequests.get<Pizza[]>(viewPizzaUrl);
 }
 
 }
