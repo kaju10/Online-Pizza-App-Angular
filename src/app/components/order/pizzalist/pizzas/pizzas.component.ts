@@ -20,7 +20,7 @@ export class PizzasComponent implements OnInit {
   }
 
   onClickAddToCart(){
-    this.msg.sendMsg(this.pizza);
+    this.msg.sendPizzaToCart(this.pizza);
   }
 
 }

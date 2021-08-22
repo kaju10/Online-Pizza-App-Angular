@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Pizza } from 'src/app/models/pizza';
+import { PizzaOrder } from 'src/app/models/pizza-order';
 import { MessengerService } from 'src/app/services/messenger.service';
+import { CartitemsComponent } from './cartitems/cartitems.component';
 
 @Component({
   selector: 'app-cart',
@@ -10,25 +12,28 @@ import { MessengerService } from 'src/app/services/messenger.service';
 export class CartComponent implements OnInit {
 
 
-  cartItems:any[]= [];
+  cartItems:PizzaOrder[]= [];
   cartTotal: number;
+  proceedToOrderButtonToggle: boolean= false;
 
   constructor(private msg: MessengerService) { }
 
 
   ngOnInit(): void {
-    this.msg.getMsg().subscribe((pizza: any)=>{
-      this.AddPizzasToCart(pizza);
+    this.msg.getPizzaToCart().subscribe((pizza: any)=>{
+       this.AddPizzasToCart(pizza);
+       console.log(this.cartItems);
     }) ;
   }
   
-  AddPizzasToCart(pizza: Pizza){
+  AddPizzasToCart(orderedPizza: Pizza){
 
+    this.proceedToOrderButtonToggle= true;
     let pizzaExists= false;
     
 
     for(let i in this.cartItems){
-        if(this.cartItems[i].pizzaId==pizza.pizzaId){
+        if(this.cartItems[i].pizza.pizzaId==orderedPizza.pizzaId){
           this.cartItems[i].quantity++;
           pizzaExists=true;
           break;
@@ -37,19 +42,28 @@ export class CartComponent implements OnInit {
 
     if(!pizzaExists){
       this.cartItems.push({
-              pizzaName: pizza.pizzaName,
-              pizzaSize: pizza.pizzaSize,
-              pizzaCost: pizza.pizzaCost,
-              pizzaId: pizza.pizzaId,
-              quantity:1
+              pizza: orderedPizza,
+              quantity:1,
+              transactionMode: "Online"
             })
 
     }
 
     this.cartTotal=0;
-    this.cartItems.forEach(i=> {this.cartTotal+= (i.pizzaCost*i.quantity)});
+    this.cartItems.forEach(i=> {this.cartTotal+= (i.pizza.pizzaCost*i.quantity)});
     
   }
+
+  @Output() public sendCartItemsToOrder = new EventEmitter();
+
+  onClickProceedToOrder(){
+     this.sendCartItemsToOrder.emit(this.cartItems);
+     this.proceedToOrderButtonToggle= false;
+  }
+  
+
+ 
+
 
  
 

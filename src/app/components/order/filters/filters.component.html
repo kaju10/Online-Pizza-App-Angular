@@ -4,18 +4,17 @@
     </div>
 
     <div class="card-body">
-        <form>
+        <form [formGroup] = "filterForm" (ngSubmit)= "onFilter()">
             <div class="form-group">
                 <label for="from">From</label>
-            <input type="number" id="from" class="form-control">
+            <input type="number" id="from" class="form-control" formControlName= "fromPrice">
             </div>
     
             <div class="form-group">
                 <label for="to">To</label>
-            <input type="number" id="to" class="form-control">
+            <input type="number" id="to" class="form-control" formControlName= "toPrice">
             </div>
-
-            <button class="btn btn-primary btn-block btn-sm">Filter By Price</button>
+            <button class="btn btn-primary btn-block btn-sm" type="submit">Filter By Price</button>
         </form>
     </div>
 </div>

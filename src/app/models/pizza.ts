@@ -1,12 +1,12 @@
 export class Pizza {
 
-    pizzaId: number=0;
-    pizzaType: string="";
-    pizzaName: string="";
-    pizzaSize: string="";
-    pizzaDescription: string="";
-    pizzaCost: number=0;
-    pizzaImageUrl: string="";
+    pizzaId: number;
+    pizzaType: string;
+    pizzaName: string;
+    pizzaSize: string;
+    pizzaDescription: string;
+    pizzaCost: number;
+    pizzaImageUrl: string;
 
 
     constructor(pizzaId: number, pizzaType: string, pizzaName: string, pizzaSize: string, pizzaDescription: string, pizzaCost: number, pizzaImageUrl: string){

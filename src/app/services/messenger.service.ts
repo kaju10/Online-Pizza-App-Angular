@@ -10,13 +10,13 @@ export class MessengerService {
   subject = new Subject();
   constructor() { }
 
-  sendMsg(pizza: Pizza){
+  sendPizzaToCart(pizza: Pizza){
       this.subject.next(pizza);
   }
 
 
 
-  getMsg(){
+  getPizzaToCart(){
     return this.subject.asObservable();
 
   }

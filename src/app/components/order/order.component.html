@@ -1,16 +1,59 @@
-
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <app-filters></app-filters>
+            <app-filters (sendfromPrice)="receivedData1($event)" (sendtoPrice)="receivedData2($event)"></app-filters>
         </div>
     
         <div class="col-md-8">
-            <app-pizzalist></app-pizzalist>
+            <app-pizzalist [receivedFromPrice]="fromPrice" [receivedToPrice]="toPrice" ></app-pizzalist>
         </div>
-    
+
         <div class="col">
-            <app-cart></app-cart>
-        </div>
+            <app-cart (sendCartItemsToOrder)="receivedCartItemsToOrder($event)"></app-cart>
+            <br> 
+            <div *ngIf="orderedPizzas.length > 0">
+                <form [formGroup] = "applyCouponForm" (ngSubmit)= "onClickApply()">
+                    <div class="form-group" >
+                        <label for="Apply Coupon"><span class="badge badge-pill badge-dark">Select Coupon</span></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <label class="input-group-text" for="inputGroupSelect01">Coupons</label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01" formControlName="selectedCoupon">
+                                <option *ngFor="let coupon of couponList" [value]="coupon.couponId">
+                                    {{coupon.couponName}}
+                                </option>
+                            </select>
+                          </div>
+                        <button class="btn btn-success btn-block  btn-lg container-fluid" type="submit" data-toggle="modal" data-target="#exampleModalCenter">Proceed to Checkout</button>
+                    </div>
+                </form>
+            </div>        
+        </div>  
     </div>
 </div>
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Order Summary</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" *ngFor="let pizzaOrder of orderedPizzas">
+            <span>{{pizzaOrder.pizza.pizzaName}}</span> <span>{{pizzaOrder.pizza.pizzaSize}}</span> X <span>{{pizzaOrder.quantity}}</span> = 
+            <span>{{pizzaOrder.pizza.pizzaCost * pizzaOrder.quantity}}</span> <br>         
+        </div>
+        <div class="container-fluid">
+            abc 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success btn-lg" (click)="onClickToPlaceOrder()">Place Order</button>
+        </div>
+      </div>
+    </div>
+  </div>

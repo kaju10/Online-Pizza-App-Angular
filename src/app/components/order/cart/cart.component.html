@@ -9,14 +9,19 @@
 
 <div *ngIf="cartItems.length">
     <ul class="list-group-item">
-        <li class="list-group-item" *ngFor="let pizza of cartItems">
-            <app-cartitems [cartPizza]="pizza"></app-cartitems>
+        <li class="list-group-item" *ngFor="let pizzaOrder of cartItems">
+            <app-cartitems [cartPizza]="pizzaOrder"></app-cartitems>
         </li>
     
         <li class="list-group-item list-group-item-info ">
             Total: <strong>{{cartTotal | currency:'INR'}}</strong>
         </li>
     </ul>
+</div>
+<br>
+<div class="container-fluid" *ngIf="proceedToOrderButtonToggle">
+    <button type="button" class="btn btn-warning btn-lg" (click)="onClickProceedToOrder()" >Proceed To Order</button>
+
 </div>
 
 
