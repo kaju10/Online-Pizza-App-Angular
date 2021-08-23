@@ -15,6 +15,11 @@ import { PizzasComponent } from './components/order/pizzalist/pizzas/pizzas.comp
 
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { HomepagefiltersComponent } from './components/homepage/homepagefilters/homepagefilters.component';
+import { HomepagepizzalistComponent } from './components/homepage/homepagepizzalist/homepagepizzalist.component';
+import { HomepagepizzaComponent } from './components/homepage/homepagepizzalist/homepagepizza/homepagepizza.component';
+import { PagenotfoundComponent } from './components/shared/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     CartComponent,
     PizzalistComponent,
     CartitemsComponent,
-    PizzasComponent
+    PizzasComponent,
+    HomepageComponent,
+    HomepagefiltersComponent,
+    HomepagepizzalistComponent,
+    HomepagepizzaComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

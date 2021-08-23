@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Coupon } from 'src/app/models/coupon';
 import { Customer } from 'src/app/models/customer';
 import { Order } from 'src/app/models/order';
@@ -12,12 +13,15 @@ import { OrderService } from 'src/app/services/order.service';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, OnDestroy {
 
   constructor(private couponservice: CouponService, private orderservice: OrderService) { }
 
   toPrice: number;
   fromPrice: number;
+
+  orderSubscription : Subscription;
+
   goToCheckoutButtonToggle:boolean= false;
   appliedCoupon:Coupon;
   dummyCustomer: Customer= new Customer(8876543210, "xyz@69", "xyz72def", "customer", "xyz", "xyz@gmail.com", "Pune");
@@ -73,8 +77,8 @@ export class OrderComponent implements OnInit {
     this.finalOrder.coupon= this.appliedCoupon;
     console.log(this.finalOrder); 
 
-    let resp=this.orderservice.bookOrder(this.finalOrder).subscribe(data=>this.orderResponse=data);
-    console.log(resp)
+    this.orderSubscription=this.orderservice.bookOrder(this.finalOrder).subscribe(data=>this.orderResponse=data);
+    
 
   }
 
@@ -83,6 +87,14 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.couponservice.getAllCoupons().subscribe( data => this.couponList = data );
+  }
+
+  ngOnDestroy(){
+    if(this.orderSubscription){
+      this.orderSubscription.unsubscribe();
+    }
+
+    console.log(this.orderResponse);
   }
 
 }
