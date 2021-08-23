@@ -20,6 +20,10 @@ import { HomepagefiltersComponent } from './components/homepage/homepagefilters/
 import { HomepagepizzalistComponent } from './components/homepage/homepagepizzalist/homepagepizzalist.component';
 import { HomepagepizzaComponent } from './components/homepage/homepagepizzalist/homepagepizza/homepagepizza.component';
 import { PagenotfoundComponent } from './components/shared/pagenotfound/pagenotfound.component';
+import { LoginComponent } from './components/login/login.component';
+import { ResisterComponent } from './components/resister/resister.component';
+import { CustomerloginComponent } from './components/login/customerlogin/customerlogin.component';
+import { AdminloginComponent } from './components/login/adminlogin/adminlogin.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { PagenotfoundComponent } from './components/shared/pagenotfound/pagenotf
     HomepagefiltersComponent,
     HomepagepizzalistComponent,
     HomepagepizzaComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    LoginComponent,
+    ResisterComponent,
+    CustomerloginComponent,
+    AdminloginComponent
   ],
   imports: [
     BrowserModule,
