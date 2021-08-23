@@ -5,6 +5,9 @@ import { AdminloginComponent } from './components/login/adminlogin/adminlogin.co
 import { CustomerloginComponent } from './components/login/customerlogin/customerlogin.component';
 import { LoginComponent } from './components/login/login.component';
 import { OrderComponent } from './components/order/order.component';
+import { AdminregisterComponent } from './components/register/adminregister/adminregister.component';
+import { CustomerregisterComponent } from './components/register/customerregister/customerregister.component';
+import { RegisterComponent } from './components/register/register.component';
 import { PagenotfoundComponent } from './components/shared/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
@@ -14,6 +17,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'customerlogin', component: CustomerloginComponent },
   { path: 'adminlogin', component: AdminloginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'customerregister', component: CustomerregisterComponent },
+  { path: 'adminregister', component: AdminregisterComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 
