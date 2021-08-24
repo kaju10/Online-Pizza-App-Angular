@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MessengerService } from 'src/app/services/messenger.service';
 
 @Component({
   selector: 'app-customerlogin',
@@ -7,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerloginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private mssngerservice: MessengerService) { }
+  mobile: number=8876543210;
+  
+  onClickLogin(){
+    this.mssngerservice.sendMobileNumberToNavbar(this.mobile);
+    this.mssngerservice.sendMobileNumber(this.mobile);
+    
+    this.router.navigate(['/order']);
+  }
 
   ngOnInit(): void {
   }

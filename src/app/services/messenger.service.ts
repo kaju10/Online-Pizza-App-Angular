@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Pizza} from '../models/pizza';
 
 @Injectable({
@@ -7,17 +7,35 @@ import { Pizza} from '../models/pizza';
 })
 export class MessengerService {
 
-  subject = new Subject();
+  subject1 = new Subject();
+  subject2 = new Subject();
   constructor() { }
 
   sendPizzaToCart(pizza: Pizza){
-      this.subject.next(pizza);
+      this.subject1.next(pizza);
   }
-
-
-
   getPizzaToCart(){
-    return this.subject.asObservable();
-
+    return this.subject1.asObservable();
   }
+
+
+
+  mobileNumber: number;
+  sendMobileNumber(mobile: number){
+    this.mobileNumber=mobile;
+  }
+  getMobileNumber(){
+    return this.mobileNumber;
+  }
+
+
+  
+  sendMobileNumberToNavbar(mobile: number){
+    this.subject2.next(mobile);
+  }
+  getMobileNumberToNavbar(){
+    return this.subject2.asObservable();
+  }
+
+
 }

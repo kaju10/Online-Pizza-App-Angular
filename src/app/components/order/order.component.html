@@ -43,12 +43,14 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" *ngFor="let pizzaOrder of orderedPizzas">
-            <span>{{pizzaOrder.pizza.pizzaName}}</span> <span>{{pizzaOrder.pizza.pizzaSize}}</span> X <span>{{pizzaOrder.quantity}}</span> = 
+        <div class="modal-body col-sm-9" *ngFor="let pizzaOrder of orderedPizzas">
+            <span>{{pizzaOrder.pizza.pizzaName}}</span> <span> {{pizzaOrder.pizza.pizzaSize}} </span> X <span>{{pizzaOrder.quantity}}</span> = 
             <span>{{pizzaOrder.pizza.pizzaCost * pizzaOrder.quantity}}</span> <br>         
         </div>
-        <div class="container-fluid">
-            abc 
+        <div class="col-md-6 ml-auto">
+             <p>Cart Value: {{cartTotal}}</p>
+             <p></p>
+             <p>You saved: {{totalSaved}}</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -62,21 +64,23 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Order Summary</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Wooohooooo</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          {{dummyCustomer.customerName}} your order is placed
+          {{realCustomer.customerName}} your order is placed
         </div>
         
         <div class="modal-footer">
-          <a href="/order" type="button" class="btn btn-dark">Back To Home</a>
+          <a href="/homepage" type="button" class="btn btn-dark">Back To Home</a>
         </div>
       </div>
     </div>
   </div>
+
+
   <!-- <div class="modal fade" id="backhome" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

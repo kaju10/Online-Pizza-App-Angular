@@ -1,11 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { first, take } from 'rxjs/operators';
 import { Coupon } from 'src/app/models/coupon';
 import { Customer } from 'src/app/models/customer';
 import { Order } from 'src/app/models/order';
 import { PizzaOrder } from 'src/app/models/pizza-order';
 import { CouponService } from 'src/app/services/coupon.service';
+import { CustomerService } from 'src/app/services/customer.service';
+import { MessengerService } from 'src/app/services/messenger.service';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -15,16 +18,24 @@ import { OrderService } from 'src/app/services/order.service';
 })
 export class OrderComponent implements OnInit, OnDestroy {
 
-  constructor(private couponservice: CouponService, private orderservice: OrderService) { }
+  constructor(private couponservice: CouponService, private orderservice: OrderService, private mssngerservice: MessengerService, private customerservice: CustomerService) {
+    // this.response= this.mssngerservice.getMobileNumber().subscribe( data=> this.realCustomerMobileNumber=data);
+  }
+  
+  
 
   toPrice: number;
   fromPrice: number;
 
   orderSubscription : Subscription;
+  response: Subscription;
 
-  goToCheckoutButtonToggle:boolean= false;
+  //goToCheckoutButtonToggle:boolean= false;
+  realCustomerMobileNumber: number;
+  realCustomer: Customer = new Customer(0, "", "", "", "", "", "");
+
   appliedCoupon:Coupon;
-  dummyCustomer: Customer= new Customer(8876543210, "xyz@69", "xyz72def", "customer", "xyz", "xyz@gmail.com", "Pune");
+  //dummyCustomer: Customer= new Customer(8876543210, "xyz@69", "xyz72def", "customer", "xyz", "xyz@gmail.com", "Pune");
   dummyDate: string= "2021-08-22";
   orderResponse: any;
 
@@ -32,9 +43,9 @@ export class OrderComponent implements OnInit, OnDestroy {
   couponList: Coupon[]=[];
   finalOrder: Order = new Order();
 
-  cartTotal: number;
-  costAfterCoupon: number;
-  totalSaved: number;
+  cartTotal: number = 0;
+  costAfterCoupon: number = 0;
+  totalSaved: number = 0;
 
   receivedData1(value: number){
     this.fromPrice=value;
@@ -51,6 +62,16 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.orderedPizzas=cartItems;
   }
 
+  createOrder(){
+    this.finalOrder.orderType= "Online";
+    this.finalOrder.orderDescription= "Add Oregano";
+    this.finalOrder.customer= this.realCustomer;
+    this.finalOrder.orderDate= this.dummyDate;
+    this.finalOrder.orderList= this.orderedPizzas;
+    this.finalOrder.coupon= this.appliedCoupon;
+    console.log(this.finalOrder); 
+  }
+
 
   
   onClickApply(){
@@ -59,7 +80,10 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.appliedCoupon=i;
     }
     console.log(this.appliedCoupon);
-
+    this.createOrder();
+    // this.finalOrder.orderList.forEach(i => {this.cartTotal+= (i.pizza.pizzaCost*i.quantity)});
+    // this.costAfterCoupon = this.cartTotal - (this.cartTotal*(this.appliedCoupon.discountPercentage)/100);
+    // this.totalSaved = this.cartTotal - this.costAfterCoupon;
   }
 
   applyCouponForm = new FormGroup({
@@ -68,18 +92,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 
   onClickToPlaceOrder(){
-    
-    this.finalOrder.orderType= "Online";
-    this.finalOrder.orderDescription= "Add Oregano";
-    this.finalOrder.customer= this.dummyCustomer;
-    this.finalOrder.orderDate= this.dummyDate;
-    this.finalOrder.orderList= this.orderedPizzas;
-    this.finalOrder.coupon= this.appliedCoupon;
-    console.log(this.finalOrder); 
-
     this.orderSubscription=this.orderservice.bookOrder(this.finalOrder).subscribe(data=>this.orderResponse=data);
-    
-
   }
 
  
@@ -87,14 +100,26 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.couponservice.getAllCoupons().subscribe( data => this.couponList = data );
+    //this.response.unsubscribe();
+    this.realCustomerMobileNumber= this.mssngerservice.getMobileNumber();
+    console.log(this.realCustomerMobileNumber);
+
+    this.customerservice.getCustomerById(this.realCustomerMobileNumber).subscribe(data=>this.realCustomer=data);
+    console.log(this.realCustomer);
+    
   }
 
   ngOnDestroy(){
     if(this.orderSubscription){
       this.orderSubscription.unsubscribe();
     }
-
     console.log(this.orderResponse);
+
+    // this.response.unsubscribe();
+    // console.log(this.realCustomerMobileNumber);
+
+    
+
   }
 
 }

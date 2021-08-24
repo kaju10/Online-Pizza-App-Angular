@@ -14,10 +14,10 @@ import { CartitemsComponent } from './components/order/cart/cartitems/cartitems.
 import { PizzasComponent } from './components/order/pizzalist/pizzas/pizzas.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HomepageComponent } from './components/homepage/homepage.component';
-import { HomepagefiltersComponent } from './components/homepage/homepagefilters/homepagefilters.component';
-import { HomepagepizzalistComponent } from './components/homepage/homepagepizzalist/homepagepizzalist.component';
-import { HomepagepizzaComponent } from './components/homepage/homepagepizzalist/homepagepizza/homepagepizza.component';
+import { HomepageComponent } from './components/shared/homepage/homepage.component';
+import { HomepagefiltersComponent } from './components/shared/homepage/homepagefilters/homepagefilters.component';
+import { HomepagepizzalistComponent } from './components/shared/homepage/homepagepizzalist/homepagepizzalist.component';
+import { HomepagepizzaComponent } from './components/shared/homepage/homepagepizzalist/homepagepizza/homepagepizza.component';
 import { PagenotfoundComponent } from './components/shared/pagenotfound/pagenotfound.component';
 import { LoginComponent } from './components/login/login.component';
 import { CustomerloginComponent } from './components/login/customerlogin/customerlogin.component';
