@@ -1,0 +1,63 @@
+<app-headeronlynav></app-headeronlynav>
+<div>
+  <button type="button" class="btn btn-info" (click)="onClickReturnToOrder()" >Back to Dashboard</button> 
+</div>
+<div class="table-responsive">
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+              <th scope="col">Order Date</th>
+              <th scope="col">Pizza</th>
+              <th scope="col">Pizza Type</th>
+              <th scope="col">Pizza Size</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Pizza Cost</th>
+              <th scope="col">Order Description</th>
+              <th scope="col">Cart Value</th>
+              <th scope="col">Bill Price</th>
+            </tr>
+          </thead>
+          <tbody>
+              <td rowspan="order.orderList.length">{{order.orderDate}}</td>
+              <td>
+                <tr *ngFor= "let pizzaorder of order.orderList">
+                  <td>
+                    {{pizzaorder.pizza.pizzaName}}
+                  </td>
+                </tr>
+              </td>
+              <td>
+                <tr *ngFor= "let pizzaorder of order.orderList">
+                  <td>
+                    {{pizzaorder.pizza.pizzaType}}
+                  </td>
+                </tr>
+              </td>
+              <td>
+                <tr *ngFor= "let pizzaorder of order.orderList">
+                  <td>
+                    {{pizzaorder.pizza.pizzaSize}}
+                  </td>
+                </tr>
+              </td>
+              <td>
+                <tr *ngFor= "let pizzaorder of order.orderList">
+                  <td>
+                    {{pizzaorder.quantity}}
+                  </td>
+                </tr>
+              </td>
+              <td>
+                <tr *ngFor= "let pizzaorder of order.orderList">
+                  <td>
+                    {{pizzaorder.pizza.pizzaCost}}
+                  </td>
+                </tr>
+              </td>
+              <td rowspan="order.orderList.length">{{order.orderDescription}}</td>
+              <th scope="row" rowspan="order.orderList.length">{{order.totalCost}}</th>
+              <th scope="row" rowspan="order.orderList.length">{{order.costAfterCoupon}}</th>
+                     
+          </tbody>
+    </table>
+</div>

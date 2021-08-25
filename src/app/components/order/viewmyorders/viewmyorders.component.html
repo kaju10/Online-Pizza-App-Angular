@@ -1,4 +1,7 @@
 <app-headeronlynav></app-headeronlynav>
+<div>
+  <button [routerLink]="['/order']" type="button" class="btn btn-info" >Back to Dashboard</button> 
+</div>
 <div class="table-responsive">
     <table class="table table-hover table-dark">
         <thead>
@@ -19,7 +22,7 @@
           <tbody>
             <tr *ngFor= "let order of orderHistory">
               <th scope="row">{{order.orderId}}</th>
-              <td colspan="order.orderList.length">{{order.orderDate}}</td>
+              <td rowspan="order.orderList.length">{{order.orderDate}}</td>
               <td>
                 <tr *ngFor= "let pizzaorder of order.orderList">
                   <td>
@@ -55,10 +58,10 @@
                   </td>
                 </tr>
               </td>
-              <td colspan="order.orderList.length">{{order.coupon.couponName}}</td>
-              <td colspan="order.orderList.length">{{order.orderDescription}}</td>
-              <th scope="row" colspan="order.orderList.length">{{order.totalCost}}</th>
-              <th scope="row" colspan="order.orderList.length">{{order.costAfterCoupon}}</th>
+              <td rowspan="order.orderList.length">{{order.coupon.couponName}}</td>
+              <td rowspan="order.orderList.length">{{order.orderDescription}}</td>
+              <th scope="row" rowspan="order.orderList.length">{{order.totalCost}}</th>
+              <th scope="row" rowspan="order.orderList.length">{{order.costAfterCoupon}}</th>
             </tr>          
           </tbody>
     </table>

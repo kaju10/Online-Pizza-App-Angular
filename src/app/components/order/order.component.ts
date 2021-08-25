@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { first, take } from 'rxjs/operators';
 import { Coupon } from 'src/app/models/coupon';
@@ -18,7 +19,7 @@ import { OrderService } from 'src/app/services/order.service';
 })
 export class OrderComponent implements OnInit, OnDestroy {
 
-  constructor(private couponservice: CouponService, private orderservice: OrderService, private mssngerservice: MessengerService, private customerservice: CustomerService) {
+  constructor(private couponservice: CouponService, private orderservice: OrderService, private mssngerservice: MessengerService, private customerservice: CustomerService, private route: Router) {
     // this.response= this.mssngerservice.getMobileNumber().subscribe( data=> this.realCustomerMobileNumber=data);
   }
   
@@ -37,7 +38,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   appliedCoupon:Coupon;
   //dummyCustomer: Customer= new Customer(8876543210, "xyz@69", "xyz72def", "customer", "xyz", "xyz@gmail.com", "Pune");
   dummyDate: string= "2021-08-22";
-  orderResponse: any;
+  orderResponse: Order= new Order();
 
   orderedPizzas: PizzaOrder[]=[];
   couponList: Coupon[]=[];
@@ -81,9 +82,9 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
     console.log(this.appliedCoupon);
     this.createOrder();
-    // this.finalOrder.orderList.forEach(i => {this.cartTotal+= (i.pizza.pizzaCost*i.quantity)});
-    // this.costAfterCoupon = this.cartTotal - (this.cartTotal*(this.appliedCoupon.discountPercentage)/100);
-    // this.totalSaved = this.cartTotal - this.costAfterCoupon;
+    this.finalOrder.orderList.forEach(i => {this.cartTotal+= (i.pizza.pizzaCost*i.quantity)});
+    this.costAfterCoupon = this.cartTotal - (this.cartTotal*(this.appliedCoupon.discountPercentage)/100);
+    this.totalSaved = this.cartTotal - this.costAfterCoupon;
   }
 
   applyCouponForm = new FormGroup({
@@ -92,7 +93,11 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 
   onClickToPlaceOrder(){
-    this.orderSubscription=this.orderservice.bookOrder(this.finalOrder).subscribe(data=>this.orderResponse=data);
+    this.orderSubscription=this.orderservice.bookOrder(this.finalOrder).subscribe(data=> {
+      this.orderResponse=data;
+      this.mssngerservice.sendOrderIdToOrderPlaced(this.orderResponse.orderId);
+      this.route.navigate(['/orderplacedconfirmation']);
+    });
   }
 
  
@@ -105,9 +110,13 @@ export class OrderComponent implements OnInit, OnDestroy {
     console.log(this.realCustomerMobileNumber);
 
     this.customerservice.getCustomerById(this.realCustomerMobileNumber).subscribe(data=>this.realCustomer=data);
-    console.log(this.realCustomer);
-    
+    console.log(this.realCustomer); 
   }
+
+  // onClickReturnToOrder(){
+  //   this.route.navigate(['/order']);
+  //   this.ngOnInit();
+  // }
 
   ngOnDestroy(){
     if(this.orderSubscription){

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { saveOrderUrl, viewAllOrders, viewMyOrders } from '../config';
+import { saveOrderUrl, viewAllOrders, viewMyOrders, viewOrder } from '../config';
 import { Order } from '../models/order';
 
 @Injectable({
@@ -21,6 +21,10 @@ export class OrderService {
 
   public viewAllOrders(): Observable<Order[]>{
     return this.httpRequests.get<Order[]>( viewAllOrders );
+  }
+
+  public viewOrderById(orderId: number): Observable<Order>{
+    return this.httpRequests.get<Order>(viewOrder + "/" + orderId);
   }
 
 }

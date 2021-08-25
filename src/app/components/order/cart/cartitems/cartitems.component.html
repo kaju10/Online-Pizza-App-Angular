@@ -1,5 +1,8 @@
 <div class="cart-item">
     <span>{{cartPizza.pizza.pizzaName}}</span> <span> {{cartPizza.pizza.pizzaSize}} </span> x <span>{{cartPizza.quantity}}</span>: <strong>{{cartPizza.pizza.pizzaCost | currency:'INR'}}</strong>
 </div>
-<button (click)="onClickToAdd()"> + </button>
-<button (click)="onClickToRemove()"> - </button>
+<div class="mb-5">
+    <button class="btn btn-outline-success btn-sm float-right" (click)="onClickToAdd()"> + </button>
+    <button class="btn btn-outline-danger btn-sm  float-left" (click)="onClickToRemove()"> - </button>
+</div>
+

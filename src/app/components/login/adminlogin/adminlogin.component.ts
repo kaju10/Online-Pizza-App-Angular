@@ -17,8 +17,7 @@ export class AdminloginComponent implements OnInit {
   message: string= "";
 
   onClickLoginAdmin(){
-    // this.mssngerservice.sendMobileNumberToNavbar(this.mobile);
-    // this.mssngerservice.sendMobileNumber(this.mobile);this
+    
     this.adminservice.adminLogin(this.mobile, this.password).subscribe( data => {
       this.message = data;
       if(this.message== "Logged in"){

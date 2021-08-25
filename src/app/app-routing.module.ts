@@ -15,6 +15,7 @@ import { ShowcustomerComponent } from './components/adminhomepage/showcustomer/s
 import { PizzacrudComponent } from './components/adminhomepage/pizzacrud/pizzacrud.component';
 import { CouponcrudComponent } from './components/adminhomepage/couponcrud/couponcrud.component';
 import { ShoworderComponent } from './components/adminhomepage/showorder/showorder.component';
+import { OrderplacedconfirmationComponent } from './components/orderplacedconfirmation/orderplacedconfirmation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'pizzacrud', component: PizzacrudComponent },
   { path: 'couponcrud', component: CouponcrudComponent },
   { path: 'showorder', component: ShoworderComponent },
+  { path: 'orderplacedconfirmation', component: OrderplacedconfirmationComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 

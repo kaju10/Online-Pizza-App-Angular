@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Pizza } from 'src/app/models/pizza';
 import { PizzaOrder } from 'src/app/models/pizza-order';
 import { Pizzasender } from 'src/app/models/pizzasender';
 import { MessengerService } from 'src/app/services/messenger.service';
@@ -12,7 +13,7 @@ export class CartitemsComponent implements OnInit {
 
   @Input() cartPizza : PizzaOrder;
 
-  pizzaSender: Pizzasender;
+  pizzaSender: Pizzasender= new Pizzasender(new Pizza(0,"","", "","", 0,""), 0);
 
   constructor(private msg: MessengerService) { }
 

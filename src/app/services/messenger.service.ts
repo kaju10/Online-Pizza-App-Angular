@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { Order } from '../models/order';
 import { Pizza} from '../models/pizza';
 import { Pizzasender } from '../models/pizzasender';
 
@@ -10,6 +11,7 @@ export class MessengerService {
 
   subject1 = new Subject();
   subject2 = new Subject();
+  subject3 = new Subject();
   constructor() { }
 
   sendPizzaToCart(pizza: Pizza){
@@ -24,6 +26,14 @@ export class MessengerService {
   }
   getPizzaToCartUsingButton(){
     return this.subject2.asObservable();
+  }
+
+  orderId: number;
+  sendOrderIdToOrderPlaced(id: number){
+    this.orderId= id;
+  }
+  getOrderIdToOrderPlaced(){
+    return this.orderId;
   }
 
 

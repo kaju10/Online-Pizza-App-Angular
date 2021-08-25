@@ -1,20 +1,16 @@
-<div class="card mb-4 shadow-sm">
-    <img class="bd-placeholder-img card-img-top" width="100%" [src]="pizza.pizzaImageUrl" alt="Pizza image cap">
-    <div class="card-body">
-        <p>
-            <strong class="text-muted">{{pizza.pizzaCost | currency: 'INR'}}</strong>
-        </p>
-        <hr>
-      <p class="card-text">{{pizza.pizzaName}}</p>
-      <div class="d-flex justify-content-between align-items-center ">
-        <div class="col-btn-group container-fluid">
-            <button type="button" class="btn btn-sm btn-outline-success container-fluid px-py " data-toggle="collapse" data-target="#pizza.id" aria-expanded="false" aria-controls="collapseExample">View Details</button>
-        </div>
-      </div>
+<div class="card mb-4 shadow-sm ">
+  <img class="bd-placeholder-img card-img-top" height="230px" width="230px" [src]="pizza.pizzaImageUrl" alt="Pizza image cap">
+  <div class="card-body">
+    <span>{{pizza.pizzaName}}</span> 
+          <strong class="text-muted-dark float-right">{{pizza.pizzaCost | currency: 'INR'}}</strong>
+      
+      <hr>
+    <p class="card-text">{{pizza.pizzaDescription}}</p>
+  </div>
+  <div class="collapse" id="pizza.pizzaId">
+    <div class="card card-body">
+      
     </div>
-    <div class="collapse" id= "pizza.id">
-      <div class="card card-body">
-        {{pizza.pizzaDescription}}
-      </div>
-    </div>
+  </div>
 </div>
+  

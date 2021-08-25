@@ -2,8 +2,11 @@
     border-radius: 0;
 } 
 
+
+
 .btn-primary{
-    background-color: rgb(83, 24, 131);
+    background-color: rgb(25, 206, 230);
+    border-color: turquoise;
 }
 
 

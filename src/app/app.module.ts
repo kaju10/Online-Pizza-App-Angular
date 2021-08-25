@@ -34,6 +34,7 @@ import { ViewmyordersComponent } from './components/order/viewmyorders/viewmyord
 import { ShowcustomerComponent } from './components/adminhomepage/showcustomer/showcustomer.component';
 import { ShoworderComponent } from './components/adminhomepage/showorder/showorder.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrderplacedconfirmationComponent } from './components/orderplacedconfirmation/orderplacedconfirmation.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     OrdernavComponent,
     ViewmyordersComponent,
     ShowcustomerComponent,
-    ShoworderComponent
+    ShoworderComponent,
+    OrderplacedconfirmationComponent
   ],
   imports: [
     BrowserModule,
