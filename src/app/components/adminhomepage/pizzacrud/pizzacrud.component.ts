@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, NgForm } from '@angular/forms';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Pizza } from 'src/app/models/pizza';
+import { PizzasService } from 'src/app/services/pizzas.service';
 
 @Component({
   selector: 'app-pizzacrud',
@@ -15,7 +19,7 @@ export class PizzacrudComponent implements OnInit {
   editForm!: FormGroup;
 
   constructor(
-    private service:PizzaserviceService, 
+    private service:PizzasService, 
    private modalService: NgbModal,
    private fb:FormBuilder
   ) { }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, NgForm } from '@angular/forms';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Coupon } from 'src/app/models/coupon';
+import { CouponService } from 'src/app/services/coupon.service';
 
 @Component({
   selector: 'app-couponcrud',
@@ -16,7 +20,7 @@ export class CouponcrudComponent implements OnInit {
 
 
   constructor(
-   private service:CouponserviceService, 
+   private service:CouponService, 
    private modalService: NgbModal,
    private fb:FormBuilder
   ) { }
@@ -36,7 +40,7 @@ export class CouponcrudComponent implements OnInit {
 
   //modal pop-up methods
 
-  open(content) {
+  open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -97,7 +101,7 @@ export class CouponcrudComponent implements OnInit {
 
 
 //Update --------------------------------------------------------------------
- openEdit(targetModal, editCoupon: Coupon) {
+ openEdit(targetModal: any, editCoupon: Coupon) {
   this.modalService.open(targetModal, {
     backdrop: 'static',
     size: 'lg'
@@ -122,7 +126,7 @@ export class CouponcrudComponent implements OnInit {
  
 
   //Delete ------------------------------------------------------------------------
-  openDelete(targetModal, delcoupon: Coupon) {
+  openDelete(targetModal: any, delcoupon: Coupon) {
     this.deleteId = delcoupon.couponId;
     this.modalService.open(targetModal, {
       backdrop: 'static',

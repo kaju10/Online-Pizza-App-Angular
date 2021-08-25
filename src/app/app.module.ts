@@ -33,6 +33,7 @@ import { OrdernavComponent } from './components/order/ordernav/ordernav.componen
 import { ViewmyordersComponent } from './components/order/viewmyorders/viewmyorders.component';
 import { ShowcustomerComponent } from './components/adminhomepage/showcustomer/showcustomer.component';
 import { ShoworderComponent } from './components/adminhomepage/showorder/showorder.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { ShoworderComponent } from './components/adminhomepage/showorder/showord
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

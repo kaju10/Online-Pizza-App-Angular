@@ -12,6 +12,9 @@ import { PagenotfoundComponent } from './components/shared/pagenotfound/pagenotf
 import { ViewmyordersComponent } from './components/order/viewmyorders/viewmyorders.component';
 import { AdminhomepageComponent } from './components/adminhomepage/adminhomepage.component';
 import { ShowcustomerComponent } from './components/adminhomepage/showcustomer/showcustomer.component';
+import { PizzacrudComponent } from './components/adminhomepage/pizzacrud/pizzacrud.component';
+import { CouponcrudComponent } from './components/adminhomepage/couponcrud/couponcrud.component';
+import { ShoworderComponent } from './components/adminhomepage/showorder/showorder.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
@@ -26,6 +29,9 @@ const routes: Routes = [
   { path: 'viewmyorders', component: ViewmyordersComponent },
   { path: 'adminhomepage', component: AdminhomepageComponent },
   { path: 'showcustomer', component: ShowcustomerComponent },
+  { path: 'pizzacrud', component: PizzacrudComponent },
+  { path: 'couponcrud', component: CouponcrudComponent },
+  { path: 'showorder', component: ShoworderComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 
