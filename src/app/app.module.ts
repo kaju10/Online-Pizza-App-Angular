@@ -28,6 +28,11 @@ import { AdminregisterComponent } from './components/register/adminregister/admi
 import { AdminhomepageComponent } from './components/adminhomepage/adminhomepage.component';
 import { CouponcrudComponent } from './components/adminhomepage/couponcrud/couponcrud.component';
 import { PizzacrudComponent } from './components/adminhomepage/pizzacrud/pizzacrud.component';
+import { HeaderonlynavComponent } from './components/shared/headeronlynav/headeronlynav.component';
+import { OrdernavComponent } from './components/order/ordernav/ordernav.component';
+import { ViewmyordersComponent } from './components/order/viewmyorders/viewmyorders.component';
+import { ShowcustomerComponent } from './components/adminhomepage/showcustomer/showcustomer.component';
+import { ShoworderComponent } from './components/adminhomepage/showorder/showorder.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +59,12 @@ import { PizzacrudComponent } from './components/adminhomepage/pizzacrud/pizzacr
     AdminregisterComponent,
     AdminhomepageComponent,
     CouponcrudComponent,
-    PizzacrudComponent
+    PizzacrudComponent,
+    HeaderonlynavComponent,
+    OrdernavComponent,
+    ViewmyordersComponent,
+    ShowcustomerComponent,
+    ShoworderComponent
   ],
   imports: [
     BrowserModule,

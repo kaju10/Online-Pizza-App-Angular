@@ -19,11 +19,15 @@ export class CustomerloginComponent implements OnInit {
   onClickLoginCustomer(){
     // this.mssngerservice.sendMobileNumberToNavbar(this.mobile);
     this.mssngerservice.sendMobileNumber(this.mobile);
-    this.customerservice.customerLogin(this.mobile, this.password).subscribe( data => this.message = data );
+    this.customerservice.customerLogin(this.mobile, this.password).subscribe( data => {this.message = data;
+      if(this.message== "Logged in"){
+        this.router.navigate(['/order']);
+      }
+    else{
+      alert("Invalid Password!");
+    }} );
     
-    if(this.message== "Logged in"){
-      this.router.navigate(['/order']);
-    }
+    
   }
 
   ngOnInit(): void {

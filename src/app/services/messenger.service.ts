@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Pizza} from '../models/pizza';
+import { Pizzasender } from '../models/pizzasender';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,12 @@ export class MessengerService {
   getPizzaToCart(){
     return this.subject1.asObservable();
   }
-  removePizzaFromCart(pizza: Pizza){
-    this.subject1.next(pizza);
+  
+  sendPizzaToCartUsingButton(pizzaFromButton: Pizzasender){
+    this.subject2.next(pizzaFromButton);
   }
-  getPizzaToRemoveFromCart(){
-    return this.subject1.asObservable();
+  getPizzaToCartUsingButton(){
+    return this.subject2.asObservable();
   }
 
 
@@ -33,15 +35,5 @@ export class MessengerService {
   getMobileNumber(){
     return this.mobileNumber;
   }
-
-
-  
-  sendMobileNumberToNavbar(mobile: number){
-    this.subject2.next(mobile);
-  }
-  getMobileNumberToNavbar(){
-    return this.subject2.asObservable();
-  }
-
 
 }

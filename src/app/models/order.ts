@@ -3,13 +3,15 @@ import { Customer } from "./customer";
 import { PizzaOrder } from "./pizza-order";
 
 export class Order {
-    
+    orderId: number;
     orderList: PizzaOrder[];
     customer: Customer;
     orderDate: string;
     orderType: string;
     orderDescription: string;
     coupon: Coupon;
+    totalCost: number;
+    costAfterCoupon: number;
 
     constructor(){ };
 

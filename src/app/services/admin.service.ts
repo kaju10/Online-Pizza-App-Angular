@@ -18,4 +18,11 @@ export class AdminService {
   registerAdmin(admin: Admin): Observable<Object>{
     return this.httpRequests.post("http://localhost:9090/saveAdmin", admin);
   }
+
+  viewCustomers(){
+    return this.httpRequests.get<any>("http://localhost:9090/viewCustomer");
+  }
+  public findCustomers(mobile:any){
+    return this.httpRequests.get<any>("http://localhost:9090/listcustomer/"+mobile);
+  }
 }

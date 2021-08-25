@@ -9,6 +9,9 @@ import { AdminregisterComponent } from './components/register/adminregister/admi
 import { CustomerregisterComponent } from './components/register/customerregister/customerregister.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PagenotfoundComponent } from './components/shared/pagenotfound/pagenotfound.component';
+import { ViewmyordersComponent } from './components/order/viewmyorders/viewmyorders.component';
+import { AdminhomepageComponent } from './components/adminhomepage/adminhomepage.component';
+import { ShowcustomerComponent } from './components/adminhomepage/showcustomer/showcustomer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
@@ -20,6 +23,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'customerregister', component: CustomerregisterComponent },
   { path: 'adminregister', component: AdminregisterComponent },
+  { path: 'viewmyorders', component: ViewmyordersComponent },
+  { path: 'adminhomepage', component: AdminhomepageComponent },
+  { path: 'showcustomer', component: ShowcustomerComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 

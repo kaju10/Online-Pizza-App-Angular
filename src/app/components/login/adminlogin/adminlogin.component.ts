@@ -19,14 +19,16 @@ export class AdminloginComponent implements OnInit {
   onClickLoginAdmin(){
     // this.mssngerservice.sendMobileNumberToNavbar(this.mobile);
     // this.mssngerservice.sendMobileNumber(this.mobile);this
-    this.adminservice.adminLogin(this.mobile, this.password).subscribe( data => this.message = data );
-    
-    if(this.message== "Logged in"){
-      this.router.navigate(['/order']);
+    this.adminservice.adminLogin(this.mobile, this.password).subscribe( data => {
+      this.message = data;
+      if(this.message== "Logged in"){
+        this.router.navigate(['/adminhomepage']);
+      }else{
+        alert("Invalid Password!");
+      }
+    });    
     }
-    
-    
-  }
+
 
   ngOnInit(): void {
   }

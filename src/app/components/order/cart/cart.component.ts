@@ -2,7 +2,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Pizza } from 'src/app/models/pizza';
 import { PizzaOrder } from 'src/app/models/pizza-order';
 import { MessengerService } from 'src/app/services/messenger.service';
-import { CartitemsComponent } from './cartitems/cartitems.component';
 
 @Component({
   selector: 'app-cart',
@@ -15,6 +14,7 @@ export class CartComponent implements OnInit {
   cartItems:PizzaOrder[]= [];
   cartTotal: number;
   proceedToOrderButtonToggle: boolean= false;
+  count: number;
 
   constructor(private msg: MessengerService) { }
 
@@ -29,6 +29,14 @@ export class CartComponent implements OnInit {
       console.log(this.cartItems);
     });
 
+    this.msg.getPizzaToCartUsingButton().subscribe((pizzaSender: any) => {
+      if(pizzaSender.checker==1){
+        this.AddPizzasToCart(pizzaSender.pizza);
+      }else{
+        this.DeletePizzasFromCart(pizzaSender.pizza)
+
+      }
+    })
     
 
   }
@@ -62,22 +70,28 @@ export class CartComponent implements OnInit {
   }
 
 
-  // DeletePizzasFromCart(orderedPizza: Pizza){
+  DeletePizzasFromCart(orderedPizza: Pizza){
+
+    this.count=-1;
+    for(let i in this.cartItems){
+      this.count++;
+        if(this.cartItems[i].pizza.pizzaId==orderedPizza.pizzaId){
+          if(this.cartItems[i].quantity>1){
+            this.cartItems[i].quantity--;
+            break;
+          }else{
+            this.cartItems.splice(this.count,1);
+          }
+        }    
+      }
+    
+      this.cartTotal=0;
+      this.cartItems.forEach(i=> {this.cartTotal+= (i.pizza.pizzaCost*i.quantity)});
+    }
 
     
     
-
-  //   for(let i in this.cartItems){
-  //       if(this.cartItems[i].pizza.pizzaId==orderedPizza.pizzaId && this.cartItems[i].quantity>1){
-  //         this.cartItems[i].quantity--;
-  //         break;
-  //       }
-  //   }
-
-  //   this.cartTotal=0;
-  //   this.cartItems.forEach(i=> {this.cartTotal+= (i.pizza.pizzaCost*i.quantity)});
-    
-  // }
+  
 
 
 
@@ -88,12 +102,6 @@ export class CartComponent implements OnInit {
      this.proceedToOrderButtonToggle= false;
   }
   
-
- 
-
-
- 
-
 }
 
 
