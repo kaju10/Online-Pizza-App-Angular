@@ -1,1 +1,204 @@
-<p>pizzacrud works!</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+
+  <div class="border">
+    <button class="btn btn-md btn-outline-primary" (click)="open(content)">
+      <i class="fa fa-user"></i>New Pizza</button>
+
+  <!----    <div id="custom-search-input" class="text-left">-->
+   <!----   <div class="text-right" >-->
+            <input type="text" class="search-query form-control" placeholder="Search With Pizza Id" id="search-input" name="id" [(ngModel)]="id"/>
+            <span class="input-group-btn">
+                <button  type="button" id="search-button" (click)=findPizzaById()>
+                  <i class="fa fa-search text-right"></i>
+                    <span class=" glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+    <!-----    </div>--->
+  <!----  </div>-->
+  </div>
+
+    <table class="table table-bordered table-striped" >
+      <thead style="text-align: center;">
+      <tr>
+        <th>Pizza ID</th>
+        <th>Pizza Type</th>
+        <th>Pizza Name</th>
+        <th>Pizza Size</th>
+        <th>Pizza Description</th>
+        <th>Pizza Cost</th>
+        <th style="width: 0px;">Pizza Image</th>
+        <th >Actions</th>
+      </tr>
+      </thead>
+      <tbody style="text-align: center;">
+      <tr *ngFor="let pizza of pizzas" >
+        <td><span>{{pizza.pizzaId}}</span></td>
+        <td><span>{{pizza.pizzaType}}</span></td>
+        <td><span>{{pizza.pizzaName}}</span></td>
+        <td><span>{{pizza.pizzaSize}}</span></td>
+        <td><span>{{pizza.pizzaDescription}}</span></td>
+        <td><span>{{pizza.pizzaCost}}</span></td>
+        <td ><span >{{pizza.pizzaImageUrl}}</span></td>
+        <td>
+          <button class="btn btn-sm btn-warning text-center" >
+            <i class="fa fa-edit" (click)="openEdit(contentEdit, pizza)"></i>Edit</button>
+          <button class="btn btn-sm btn-danger " id="dlt-button" (click)="openDelete(contentDelete, pizza)" style="margin-left: 4px;">
+            <i class="fa fa-remove "  ></i>Delete</button>
+        </td>
+        
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--Create-->
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">New Pizza</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+        <div class="form-group">
+          <label for="pizzatype">Pizza Type</label>
+          <div class="input-group">
+            <input type="text" [(ngModel)]="pizza.pizzaType" name="pizzaType" id="pizzaType"
+            placeholder="Type">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pizzaname">Pizza Name</label>
+          <div class="input-group">
+            <input type="text" [(ngModel)]="pizza.pizzaName" name="pizzaName"
+            id="pizzaName" placeholder="Name" ngModel>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="pizzasize">Pizza Size</label>
+            <div class="input-group">
+              <input type="text" [(ngModel)]="pizza.pizzaSize" name="pizzaSize"
+              id="pizzaSize" placeholder="Medium" ngModel>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pizzadescription">Pizza Description</label>
+            <div class="input-group">
+              <input type="text" [(ngModel)]="pizza.pizzaDescription" name="pizzaDescription"
+              id="pizzaDescription" placeholder="Description" ngModel>
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="pizzacost">Pizza Cost</label>
+          <div class="input-group">
+            <input  type="number" [(ngModel)]="pizza.pizzaCost" name="pizzaCost" id="pizzaCost"
+            placeholder="0" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pizzaImageUrl">Pizza Image</label>
+          <div class="input-group">
+            <input  type="text" [(ngModel)]="pizza.pizzaImageUrl" name="pizzaImageUrl" id="pizzaImageUrl"
+            placeholder="pizzaImage" >
+          </div>
+        </div>
+
+        <div class="border text-center">
+          <button data-dismiss="modal" class="btn btn-info">Submit</button>
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+    </div>
+  </ng-template>
+
+
+
+
+  <ng-template #contentDelete let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Confirm Delete</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h2>Are you sure you want to delete this record?</h2>
+      <div class="border text-center"> 
+        <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">Yes, Delete!</button> 
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+    </div>
+  </ng-template>
+
+
+
+  <ng-template #contentEdit let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title2">Edit Pizza</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form [formGroup]="editForm" novalidate>
+        <div class="form-group">
+          <label for="pizzaid">Pizza Id</label>
+          <div class="input-group">
+            <input type="number" formControlName="pizzaId" id="pizzaId2" class="form-control" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pizzatype">Pizza Type</label>
+          <div class="input-group">
+            <input type="text" formControlName="pizzaType" id="pizzaType2" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pizzaname">Pizza Name</label>
+          <div class="input-group">
+            <input type="text" formControlName="pizzaName" id="pizzaName2" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="pizzasize">Pizza Size</label>
+            <div class="input-group">
+              <input type="text" formControlName="pizzaSize" id="pizzaSize2" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pizzadescription">Pizza Description</label>
+            <div class="input-group">
+              <input type="text" formControlName="pizzaDescription" id="pizzaDescription2" class="form-control">
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="pizzacost">Pizza Cost</label>
+          <div class="input-group">
+            <input  type="number" formControlName="pizzaCost" id="pizzaCost2" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pizzaImageUrl">Pizza Image</label>
+          <div class="input-group">
+            <input type="text" formControlName="pizzaImageUrl" id="pizzaImageUrl2" class="form-control">
+          </div>
+        </div>
+        <div class="border text-center">
+         
+          </div>
+          <div class="border text-center"> <button data-dismiss="modal" class="btn btn-info" (click)="onSave()">Save Changes</button></div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+    </div>
+  </ng-template>
