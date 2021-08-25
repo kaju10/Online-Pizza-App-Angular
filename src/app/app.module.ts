@@ -13,7 +13,7 @@ import { PizzalistComponent } from './components/order/pizzalist/pizzalist.compo
 import { CartitemsComponent } from './components/order/cart/cartitems/cartitems.component';
 import { PizzasComponent } from './components/order/pizzalist/pizzas/pizzas.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomepageComponent } from './components/shared/homepage/homepage.component';
 import { HomepagefiltersComponent } from './components/shared/homepage/homepagefilters/homepagefilters.component';
 import { HomepagepizzalistComponent } from './components/shared/homepage/homepagepizzalist/homepagepizzalist.component';
@@ -25,6 +25,9 @@ import { AdminloginComponent } from './components/login/adminlogin/adminlogin.co
 import { RegisterComponent } from './components/register/register.component';
 import { CustomerregisterComponent } from './components/register/customerregister/customerregister.component';
 import { AdminregisterComponent } from './components/register/adminregister/adminregister.component';
+import { AdminhomepageComponent } from './components/adminhomepage/adminhomepage.component';
+import { CouponcrudComponent } from './components/adminhomepage/couponcrud/couponcrud.component';
+import { PizzacrudComponent } from './components/adminhomepage/pizzacrud/pizzacrud.component';
 
 @NgModule({
   declarations: [
@@ -48,13 +51,17 @@ import { AdminregisterComponent } from './components/register/adminregister/admi
     AdminloginComponent,
     RegisterComponent,
     CustomerregisterComponent,
-    AdminregisterComponent
+    AdminregisterComponent,
+    AdminhomepageComponent,
+    CouponcrudComponent,
+    PizzacrudComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,6 +17,12 @@ export class MessengerService {
   getPizzaToCart(){
     return this.subject1.asObservable();
   }
+  removePizzaFromCart(pizza: Pizza){
+    this.subject1.next(pizza);
+  }
+  getPizzaToRemoveFromCart(){
+    return this.subject1.asObservable();
+  }
 
 
 

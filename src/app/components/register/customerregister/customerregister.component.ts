@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Customer } from 'src/app/models/customer';
+import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
   selector: 'app-customerregister',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerregisterComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private service: CustomerService) { }
+  customer: Customer = new Customer(0, "", "", "customer", "", "", "");
   ngOnInit(): void {
   }
+
+  userType:string="Customer";
+  registerCustomer(){
+    this.service.registerCustomer(this.customer).subscribe(
+      data=>console.log("response received"),
+      error=>console.log("exception occured")
+    )
+    alert("Customer details registered successfully");
+}
 
 }

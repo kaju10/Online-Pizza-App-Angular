@@ -1,2 +1,43 @@
-<p>customerlogin works!</p>
-<button (click)="onClickLogin()">Login</button>
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="guest-form-card card">
+        <div class="card-body">
+  
+          <div class="card-header text-center">
+            <h2>Login Here</h2>
+          </div>
+  
+          <form #loginForm="ngForm" (ngSubmit)="onClickLoginCustomer()">
+            <div class="form-group">
+              <label for="mobile">Customer Username:</label>
+              <input type="mobile" class="form-control" placeholder="Enter mobile" name="mobile"
+                [(ngModel)]="mobile">
+            </div>
+  
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" placeholder="Enter password" name="password"
+                [(ngModel)]="password">
+            </div>
+  
+            <!--
+           <div class="form-group">
+            <div>
+              <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+              </div>
+            </div>
+          </div>
+         -->
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Login</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{message}}

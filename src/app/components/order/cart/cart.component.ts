@@ -20,10 +20,17 @@ export class CartComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // this.msg.getPizzaToRemoveFromCart().subscribe((pizza: any)=>{
+    //   this.DeletePizzasFromCart(pizza);
+    //   console.log(this.cartItems);
+    // });
     this.msg.getPizzaToCart().subscribe((pizza: any)=>{
-       this.AddPizzasToCart(pizza);
-       console.log(this.cartItems);
-    }) ;
+      this.AddPizzasToCart(pizza);
+      console.log(this.cartItems);
+    });
+
+    
+
   }
   
   AddPizzasToCart(orderedPizza: Pizza){
@@ -53,6 +60,26 @@ export class CartComponent implements OnInit {
     this.cartItems.forEach(i=> {this.cartTotal+= (i.pizza.pizzaCost*i.quantity)});
     
   }
+
+
+  // DeletePizzasFromCart(orderedPizza: Pizza){
+
+    
+    
+
+  //   for(let i in this.cartItems){
+  //       if(this.cartItems[i].pizza.pizzaId==orderedPizza.pizzaId && this.cartItems[i].quantity>1){
+  //         this.cartItems[i].quantity--;
+  //         break;
+  //       }
+  //   }
+
+  //   this.cartTotal=0;
+  //   this.cartItems.forEach(i=> {this.cartTotal+= (i.pizza.pizzaCost*i.quantity)});
+    
+  // }
+
+
 
   @Output() public sendCartItemsToOrder = new EventEmitter();
 
