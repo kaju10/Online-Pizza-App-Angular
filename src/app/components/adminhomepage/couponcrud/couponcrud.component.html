@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container">
 
-  <div class="border">
-    <button class="btn btn-md btn-outline-primary" (click)="open(content)">
+  <div>
+    <button class="btn btn-md btn-primary" (click)="open(content)">
       <i class="fa fa-user"></i>New Coupon</button>
 
   <!----    <div id="custom-search-input" class="text-left">-->
@@ -18,7 +18,7 @@
   <!----  </div>-->
   </div>
 
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-light">
       <thead>
       <tr>
         <th>Coupon ID</th>
@@ -57,7 +57,7 @@
     </div>
 
     <div class="modal-body">
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+      <form #f="ngForm" (ngSubmit)="onSubmit()" novalidate>
         <div class="form-group">
           <label for="couponname">Coupon Name</label>
           <div class="input-group">
@@ -156,4 +156,3 @@
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
     </div>
   </ng-template>
-

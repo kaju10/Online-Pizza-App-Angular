@@ -12,7 +12,7 @@ import { CouponService } from 'src/app/services/coupon.service';
 export class CouponcrudComponent implements OnInit {
 
   coupon: Coupon = new Coupon(0,"",0,"");
-  coupons : any; //: Coupon[];
+  coupons : any; 
   closeResult:string;
   private deleteId : number;
   id:string;
@@ -65,17 +65,19 @@ export class CouponcrudComponent implements OnInit {
   
 
   //Create -----------------------------------------------------------------
-  onSubmit(f: NgForm) {
+
+  onSubmit() {
 
    this.service.addCouponService(this.coupon)
       .subscribe((result) => {
-        this.ngOnInit(); //reload the table
+        this.ngOnInit(); 
       });
-    this.modalService.dismissAll(); //dismiss the modal
+    this.modalService.dismissAll(); 
   }
   
 
   //Read (All) ---------------------------------------------------------------
+
   getCoupons(){
     this.service.getAllCouponService()
     .subscribe(
@@ -88,6 +90,7 @@ export class CouponcrudComponent implements OnInit {
 
 
   //Read (Single)
+
   public findCouponById()
  {
   this.service.getCouponService(this.id)
@@ -101,6 +104,7 @@ export class CouponcrudComponent implements OnInit {
 
 
 //Update --------------------------------------------------------------------
+
  openEdit(targetModal: any, editCoupon: Coupon) {
   this.modalService.open(targetModal, {
     backdrop: 'static',
@@ -117,7 +121,7 @@ export class CouponcrudComponent implements OnInit {
 
  onSave() {
   this.eCoupon= this.editForm.value;
- this.service.updateCouponService(this.editForm.value.couponId,this.eCoupon)
+ this.service.updateCouponService(this.eCoupon)
     .subscribe((results) => {
       this.ngOnInit();
       this.modalService.dismissAll();
@@ -126,6 +130,7 @@ export class CouponcrudComponent implements OnInit {
  
 
   //Delete ------------------------------------------------------------------------
+
   openDelete(targetModal: any, delcoupon: Coupon) {
     this.deleteId = delcoupon.couponId;
     this.modalService.open(targetModal, {

@@ -111,7 +111,6 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.orderResponse=data;
       this.mssngerservice.sendOrderIdToOrderPlaced(this.orderResponse.orderId);
       this.route.navigate(['/orderplacedconfirmation']);
-      this
     });
   }
 

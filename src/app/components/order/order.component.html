@@ -44,14 +44,28 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body col-sm-9" *ngFor="let pizzaOrder of orderedPizzas">
-            <span>{{pizzaOrder.pizza.pizzaName}}</span> <span> {{pizzaOrder.pizza.pizzaSize}} </span> X <span><strong>{{pizzaOrder.quantity}}</strong></span> = 
-            <span><strong>{{pizzaOrder.pizza.pizzaCost * pizzaOrder.quantity}}</strong></span> <br>         
-        </div>
-        <div class="col-md-6 ml-auto">
-             <p>Cart Value: <strong>{{cartTotal}}</strong></p>
-             <p>Cost After Coupon Applied: <strong>{{costAfterCoupon}}</strong></p>
-             <p>You saved: <strong>{{totalSaved}}</strong></p>
+        <div class="modal-body col-sm-9" >
+            <table class="container-fluid ml-4">
+              <tr *ngFor="let pizzaOrder of orderedPizzas">
+                <td>{{pizzaOrder.pizza.pizzaName}}</td>
+                <td> x </td>
+                <td>{{pizzaOrder.quantity}}</td>
+                <td>{{pizzaOrder.pizza.pizzaCost}}</td>
+                <td>{{pizzaOrder.quantity * pizzaOrder.pizza.pizzaCost}}</td>
+              </tr>
+              <tr>
+                <td colspan="4" >Total cart value:</td>
+                <td><strong>{{cartTotal}}</strong></td>
+              </tr>
+              <tr>
+                <td colspan="4" >Cost after Coupon:</td>
+                <td><strong>{{costAfterCoupon}}</strong></td>
+              </tr>
+              <tr>
+                <td colspan="4">You saved:</td>
+                <td><h5><strong>{{totalSaved}}</strong></h5></td>
+              </tr>
+            </table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -101,3 +115,11 @@
     </div>
   </div> -->
   
+
+  <!-- <span>{{pizzaOrder.pizza.pizzaName}}</span> <span> {{pizzaOrder.pizza.pizzaSize}} </span> X <span><strong>{{pizzaOrder.quantity}}</strong></span> = 
+            <span><strong>{{pizzaOrder.pizza.pizzaCost * pizzaOrder.quantity}}</strong></span> <br>         
+        </div>
+        <div class="col-md-6 ml-auto">
+             <p>Cart Value: <strong>{{cartTotal}}</strong></p>
+             <p>Cost After Coupon Applied: <strong>{{costAfterCoupon}}</strong></p>
+             <p>You saved: <strong>{{totalSaved}}</strong></p> -->
