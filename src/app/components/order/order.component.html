@@ -45,13 +45,13 @@
           </button>
         </div>
         <div class="modal-body col-sm-9" *ngFor="let pizzaOrder of orderedPizzas">
-            <span>{{pizzaOrder.pizza.pizzaName}}</span> <span> {{pizzaOrder.pizza.pizzaSize}} </span> X <span>{{pizzaOrder.quantity}}</span> = 
-            <span>{{pizzaOrder.pizza.pizzaCost * pizzaOrder.quantity}}</span> <br>         
+            <span>{{pizzaOrder.pizza.pizzaName}}</span> <span> {{pizzaOrder.pizza.pizzaSize}} </span> X <span><strong>{{pizzaOrder.quantity}}</strong></span> = 
+            <span><strong>{{pizzaOrder.pizza.pizzaCost * pizzaOrder.quantity}}</strong></span> <br>         
         </div>
         <div class="col-md-6 ml-auto">
-             <p>Cart Value: {{cartTotal}}</p>
-             <p></p>
-             <p>You saved: {{totalSaved}}</p>
+             <p>Cart Value: <strong>{{cartTotal}}</strong></p>
+             <p>Cost After Coupon Applied: <strong>{{costAfterCoupon}}</strong></p>
+             <p>You saved: <strong>{{totalSaved}}</strong></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

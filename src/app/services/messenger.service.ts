@@ -11,7 +11,6 @@ export class MessengerService {
 
   subject1 = new Subject();
   subject2 = new Subject();
-  subject3 = new Subject();
   constructor() { }
 
   sendPizzaToCart(pizza: Pizza){

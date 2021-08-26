@@ -31,6 +31,7 @@ export class CustomerloginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
 }

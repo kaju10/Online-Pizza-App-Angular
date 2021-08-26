@@ -18,8 +18,8 @@ export class FiltersComponent implements OnInit {
   @Output() public sendtoPrice = new EventEmitter<number>();
 
   filterForm = new FormGroup({
-    fromPrice: new FormControl(),
-    toPrice: new FormControl()
+    fromPrice: new FormControl(0),
+    toPrice: new FormControl(2000)
   });
 
   onFilter(){

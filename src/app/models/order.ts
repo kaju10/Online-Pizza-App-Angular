@@ -13,15 +13,17 @@ export class Order {
     totalCost: number;
     costAfterCoupon: number;
 
-    constructor(){ };
+    constructor(){}
 
-    // constructor( orderDate: string, orderList: PizzaOrder[], customer: Customer, orderType: string, orderDescription: string, coupon: Coupon,){
-        
-    //     this.orderDate= orderDate;
+    // constructor(orderId: number, orderType: string, orderDescription: string, orderDate: string, orderList: PizzaOrder[], customer: Customer, coupon: Coupon, totalCost: number, costAfterCoupon: number){
+    //     this.orderId= orderId;
     //     this.orderType=orderType
     //     this.orderDescription=orderDescription;
-    //     this.customer= customer;
+    //     this.orderDate= orderDate;
     //     this.orderList=orderList;
+    //     this.customer= customer;
     //     this.coupon= coupon;
+    //     this.totalCost = totalCost;
+    //     this.costAfterCoupon = costAfterCoupon;
     // }
 }

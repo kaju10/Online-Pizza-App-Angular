@@ -38,10 +38,12 @@ export class OrderComponent implements OnInit, OnDestroy {
   appliedCoupon:Coupon;
   //dummyCustomer: Customer= new Customer(8876543210, "xyz@69", "xyz72def", "customer", "xyz", "xyz@gmail.com", "Pune");
   dummyDate: string= "2021-08-22";
-  orderResponse: Order= new Order();
-
   orderedPizzas: PizzaOrder[]=[];
+  //orderResponse: Order= new Order(0,"", "","",this.orderedPizzas,new Customer(0,"", "", "", "", "", ""),new Coupon(0, "", 0, ""), 0, 0);
+  orderResponse: Order= new Order();
+  
   couponList: Coupon[]=[];
+  //finalOrder: Order = new Order(0,"", "","",this.orderedPizzas,new Customer(0,"", "", "", "", "", ""),new Coupon(0, "", 0, ""), 0, 0);;
   finalOrder: Order = new Order();
 
   cartTotal: number = 0;
@@ -82,9 +84,21 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
     console.log(this.appliedCoupon);
     this.createOrder();
-    this.finalOrder.orderList.forEach(i => {this.cartTotal+= (i.pizza.pizzaCost*i.quantity)});
-    this.costAfterCoupon = this.cartTotal - (this.cartTotal*(this.appliedCoupon.discountPercentage)/100);
+
+    if(this.cartTotal==0){
+      this.finalOrder.orderList.forEach(i => {this.cartTotal+= (i.pizza.pizzaCost*i.quantity)});
+      this.costAfterCoupon = this.cartTotal - (this.cartTotal*(this.appliedCoupon.discountPercentage)/100);
     this.totalSaved = this.cartTotal - this.costAfterCoupon;
+    }
+    else{
+      this.cartTotal=0;
+      this.finalOrder.orderList.forEach(i => {this.cartTotal+= (i.pizza.pizzaCost*i.quantity)});
+      this.costAfterCoupon = this.cartTotal - (this.cartTotal*(this.appliedCoupon.discountPercentage)/100);
+    this.totalSaved = this.cartTotal - this.costAfterCoupon;
+    }
+    
+    
+    
   }
 
   applyCouponForm = new FormGroup({
@@ -97,6 +111,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.orderResponse=data;
       this.mssngerservice.sendOrderIdToOrderPlaced(this.orderResponse.orderId);
       this.route.navigate(['/orderplacedconfirmation']);
+      this
     });
   }
 
